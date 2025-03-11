@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram DM - Conversations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+        .thread-list {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .thread-item {
+            border-bottom: 1px solid #efefef;
+            padding: 15px;
+            cursor: pointer;
+        }
+        .thread-item:hover {
+            background-color: #f9f9f9;
+        }
+        .thread-item:last-child {
+            border-bottom: none;
+        }
+        .thread-title {
+            font-weight: bold;
+        }
+        .thread-preview {
+            color: #8e8e8e;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .thread-time {
+            font-size: 0.8rem;
+            color: #8e8e8e;
+        }
+        .navbar {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/threads">Instagram DM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 70px;">
+        <h4 class="mb-3">Direct Messages</h4>
+
+        <div class="thread-list">
+            {% if threads %}
+                {% for thread in threads %}
+                <div class="thread-item" onclick="window.location.href='/chat/{{ thread.id }}'">
+                    <div class="d-flex justify-content-between">
+                        <div class="thread-title">{{ thread.users }}</div>
+                        <div class="thread-time"></div>
+                    </div>
+                    <div class="thread-preview">{{ thread.last_message }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center p-4 text-muted">
+                    <p>No conversations found</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
