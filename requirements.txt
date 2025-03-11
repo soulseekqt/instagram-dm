@@ -9,3 +9,4 @@ Flask-WTF==1.2.2
 instagrapi==2.1.3
 pytz
 Pillow==8.1.1
+dotenv
