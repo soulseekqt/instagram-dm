@@ -541,18 +541,26 @@ with open('templates/chat.html', 'w') as f:
         body {
             background-color: #fafafa;
             height: 100vh;
+            margin: 0;
             display: flex;
             flex-direction: column;
         }
         .navbar {
             background-color: white;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
         .chat-container {
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 70px 0 0;
+            padding-top: 56px; /* Height of the navbar */
+            padding-bottom: 70px; /* Height of the input container */
+            overflow: hidden;
         }
         .message-list {
             flex: 1;
@@ -628,6 +636,11 @@ with open('templates/chat.html', 'w') as f:
             background-color: white;
             border-top: 1px solid #dbdbdb;
             padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
         .message-input {
             border-radius: 20px;
@@ -685,7 +698,7 @@ with open('templates/chat.html', 'w') as f:
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="/threads"><i class="fas fa-arrow-left"></i> Back</a>
             <span id="chat-title" class="navbar-text">Loading...</span>
@@ -710,14 +723,14 @@ with open('templates/chat.html', 'w') as f:
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="message-input-container">
-            <div class="container position-relative">
-                <form id="messageForm">
-                    <textarea class="form-control message-input" id="messageInput" placeholder="Message..." rows="1"></textarea>
-                    <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
+    <div class="message-input-container">
+        <div class="container position-relative">
+            <form id="messageForm">
+                <textarea class="form-control message-input" id="messageInput" placeholder="Message..." rows="1"></textarea>
+                <button type="submit" class="send-button"><i class="fas fa-paper-plane"></i></button>
+            </form>
         </div>
     </div>
 
